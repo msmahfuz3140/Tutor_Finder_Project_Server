@@ -13,7 +13,10 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const PORT = process.env.PORT || 4000;
 const uri = process.env.MONGODB_URI;
-app.use(cors());
+app.use(cors({
+    origin: "https://tutor-finder-project.vercel.app",
+    credentials: true
+  }));
 app.use(express.json());
 if (!uri) {
     throw new Error("❌ MONGODB_URI missing in .env file");
