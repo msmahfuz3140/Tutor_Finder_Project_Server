@@ -61,6 +61,20 @@ async function run() {
             }
         });
 
+        app.get("/tutors/:id", async (req, res) => {
+            try {
+                const { id } = req.params;
+                const tutor = await tutorsCollection.findOne({ _id: new ObjectId(id) });
+                if (!tutor) {
+                    return res.status(404).json({ error: "Tutor not found" });
+                }
+                res.status(200).json(tutor);
+            } catch (error) {
+                console.error(error);
+                res.status(500).json({ error: "Failed to fetch tutor" });
+            }
+        });
+
         app.listen(PORT, () => {
             console.log(`🚀 Server running on PORT ${PORT}`);
         });
