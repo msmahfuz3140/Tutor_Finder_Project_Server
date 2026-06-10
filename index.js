@@ -16,7 +16,7 @@ const uri = process.env.MONGODB_URI;
 
 // Allow all origins for this project (Vercel preview deployments need this)
 app.use(cors({
-    origin: true,
+    origin: "*",
     credentials: true
 }));
 app.use(express.json());
